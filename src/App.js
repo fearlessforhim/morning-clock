@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setNow(new Date());
-    }, 500);
+    }, 100);
   }, [now]);
 
   let additionalText = [
@@ -19,18 +19,24 @@ function App() {
       textAnchor={'middle'}
       style={{'fontSize': '48px'}}
       strokeWidth={'1px'}
-      textStroke={'white'}
       fill={'white'}
     >
       {`${now.getHours()}:${now.getMinutes() < 10 ? `0${now.getMinutes()}` : now.getMinutes()}`}
     </text>
   ];
 
-
+  let nowMillis = new Date().getTime();
+  let secondHandDegrees = ((nowMillis % 60000)/60000) * 360;
+  let minuteHandDegrees = ((nowMillis % 3600000)/3600000) * 360;
+  let millisIntoDay = nowMillis % 86400000;
+  let secondsIntoDay = millisIntoDay / 1000;
+  let minutesIntoDay = secondsIntoDay / 60;
+  let hoursAfter12 = (minutesIntoDay / 60) - 8 - 12;//PST offset
+  let hourHandDegrees = (hoursAfter12 / 12) * 360;
 
   let arcs = () => {
     let arcBuilder = new ArcBuilder();
-    let wakeHour = 6;
+    let wakeHour = 14;
     let wakeMinute = 30;
 
     arcBuilder.addConfig({startDegrees: 0, lengthInDegrees: (59.99999/60) * 360, color: 'gray', rounded: true});
@@ -44,7 +50,6 @@ function App() {
           textAnchor={'middle'}
           style={{'fontSize': '32px'}}
           strokeWidth={'1px'}
-          textStroke={'white'}
           fill={'white'}
         >
           Wake Up!
@@ -63,7 +68,6 @@ function App() {
             textAnchor={'middle'}
             style={{'fontSize': '32px'}}
             strokeWidth={'1px'}
-            textStroke={'white'}
             fill={'white'}
           >
             Get Dressed
@@ -78,7 +82,6 @@ function App() {
             textAnchor={'middle'}
             style={{'fontSize': '32px'}}
             strokeWidth={'1px'}
-            textStroke={'white'}
             fill={'white'}
           >
             Breakfast
@@ -94,7 +97,6 @@ function App() {
           textAnchor={'middle'}
           style={{'fontSize': '32px'}}
           strokeWidth={'1px'}
-          textStroke={'white'}
           fill={'white'}
         >
           Get Dressed
@@ -108,7 +110,6 @@ function App() {
           textAnchor={'middle'}
           style={{'fontSize': '32px'}}
           strokeWidth={'1px'}
-          textStroke={'white'}
           fill={'white'}
         >
           Breakfast
@@ -122,7 +123,6 @@ function App() {
           textAnchor={'middle'}
           style={{'fontSize': '32px'}}
           strokeWidth={'1px'}
-          textStroke={'white'}
           fill={'white'}
         >
           Play Time
@@ -136,7 +136,6 @@ function App() {
           textAnchor={'middle'}
           style={{'fontSize': '24px'}}
           strokeWidth={'1px'}
-          textStroke={'white'}
           fill={'white'}
         >
           Shoes and jackets
@@ -150,7 +149,6 @@ function App() {
           textAnchor={'middle'}
           style={{'fontSize': '32px'}}
           strokeWidth={'1px'}
-          textStroke={'white'}
           fill={'white'}
         >
           To the car
@@ -160,9 +158,6 @@ function App() {
 
     return arcBuilder.getArcs();
   }
-
-  let currentSecondRotationDegree = (now.getSeconds()/60) * 360;;
-  let currentMinuteRotationDegree = (now.getMinutes()/60) * 360;
 
   return (
     <div className="App">
@@ -183,7 +178,6 @@ function App() {
             textAnchor={'middle'}
             style={{'fontSize': '48px'}}
             strokeWidth={'1px'}
-            textStroke={'white'}
             fill={'white'}
           >
             12
@@ -194,7 +188,6 @@ function App() {
            textAnchor={'middle'}
            style={{'fontSize': '48px'}}
            strokeWidth={'1px'}
-           textStroke={'white'}
            fill={'white'}
          >
            3
@@ -205,7 +198,6 @@ function App() {
            textAnchor={'middle'}
            style={{'fontSize': '48px'}}
            strokeWidth={'1px'}
-           textStroke={'white'}
            fill={'white'}
          >
            6
@@ -216,19 +208,19 @@ function App() {
           textAnchor={'middle'}
           style={{'fontSize': '48px'}}
           strokeWidth={'1px'}
-          textStroke={'white'}
           fill={'white'}
         >
           9
         </text>
         {additionalText.map(t => t)}
+
         <line
          x1="200"
          y1="200"
           x2="200"
-          y2="20"
-          style={{stroke: '#444', 'strokeWidth': 1.5}}
-          transform={`rotate(${currentSecondRotationDegree} 200 200)`}
+          y2="75"
+          style={{stroke: '#AAA', 'strokeWidth': 20}}
+          transform={`rotate(${hourHandDegrees} 200 200)`}
           strokeLinecap={'round'}
         />
         <line
@@ -236,8 +228,17 @@ function App() {
          y1="200"
           x2="200"
           y2="20"
-          style={{stroke: '#AAA', 'strokeWidth': 10}}
-          transform={`rotate(${currentMinuteRotationDegree} 200 200)`}
+          style={{stroke: 'orange', 'strokeWidth': 10}}
+          transform={`rotate(${minuteHandDegrees} 200 200)`}
+          strokeLinecap={'round'}
+        />
+        <line
+         x1="200"
+         y1="200"
+          x2="200"
+          y2="20"
+          style={{stroke: '#444', 'strokeWidth': 1.5}}
+          transform={`rotate(${secondHandDegrees} 200 200)`}
           strokeLinecap={'round'}
         />
           </svg>

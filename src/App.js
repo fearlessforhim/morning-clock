@@ -36,7 +36,7 @@ function App() {
 
   let arcs = () => {
     let arcBuilder = new ArcBuilder();
-    let wakeHour = 14;
+    let wakeHour = 6;
     let wakeMinute = 30;
 
     arcBuilder.addConfig({startDegrees: 0, lengthInDegrees: (59.99999/60) * 360, color: 'gray', rounded: true});

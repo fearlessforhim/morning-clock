@@ -30,7 +30,7 @@ function App() {
 
   let arcs = () => {
     let arcBuilder = new ArcBuilder();
-    let wakeHour = 11;
+    let wakeHour = 6;
     let wakeMinute = 30;
 
     arcBuilder.addConfig({startDegrees: 0, lengthInDegrees: (59.99999/60) * 360, color: 'gray', rounded: true});
@@ -158,16 +158,11 @@ function App() {
       );
     }
 
-
-    // arcBuilder.addConfig({startDegrees: (50/60) * 360, lengthInDegrees: (20/60) * 360, color: 'green', rounded: true});
-    // arcBuilder.addConfig({startDegrees: (10/60) * 360, lengthInDegrees: (15/60) * 360, color: 'red', rounded: true});
     return arcBuilder.getArcs();
   }
 
   let currentSecondRotationDegree = (now.getSeconds()/60) * 360;;
   let currentMinuteRotationDegree = (now.getMinutes()/60) * 360;
-
-
 
   return (
     <div className="App">
@@ -251,34 +246,3 @@ function App() {
 }
 
 export default App;
-
-
-// import './App.css';
-// import ArcBuilder from './svg-arc-builder';
-//
-// function App() {
-//
-// let arcs = () => {
-//   let arcBuilder = new ArcBuilder();
-//
-//   arcBuilder.addConfig({startDegrees: 282, lengthInDegrees: 40, color: 'red', rounded: true})
-// }
-//
-//   return (
-//     <div className="App">
-//       <svg style={{fill: 'none', 'strokeWidth': 40}} width="100%" height="100%" viewBox={'0 0 400 400'}>
-//        {arcs().map((a, idx) => {
-//          return <path
-//          key={idx}
-//          id={a.id}
-//          d={a.path}
-//          stroke={a.color}
-//          strokeLinecap={a.rounded ? 'round' : ''}
-//          />
-//        })}
-//       </svg>
-//     </div>
-//   );
-// }
-//
-// export default App;

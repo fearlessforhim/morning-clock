@@ -39,10 +39,10 @@ function App() {
     let wakeHour = 6;
     let wakeMinute = 30;
 
-    arcBuilder.addConfig({startDegrees: 0, lengthInDegrees: (59.99999/60) * 360, color: 'gray', rounded: true});
+    arcBuilder.addConfig({startDegrees: 0, lengthInDegrees: (59.99999/60) * 360, color: 'gray', rounded: false});
 
     if(now.getHours() === wakeHour){
-      arcBuilder.addConfig({startDegrees: (30/60) * 360, lengthInDegrees: (30/60) * 360, color: 'yellow', rounded: true});
+      arcBuilder.addConfig({startDegrees: (30/60) * 360, lengthInDegrees: (10/60) * 360, color: 'yellow', rounded: false});
       additionalText.push(
         <text
           x={-50}
@@ -56,15 +56,39 @@ function App() {
         </text>
       );
       if(now.getMinutes() < wakeMinute){
-        arcBuilder.addConfig({startDegrees: (55/60) * 360, lengthInDegrees: (5/60) * 360, color: 'green', rounded: true});
-      } else if (now.getMinutes() > wakeMinute && now.getMinutes() < wakeMinute + 15) {
-        arcBuilder.addConfig({startDegrees: (55/60) * 360, lengthInDegrees: (20/60) * 360, color: 'green', rounded: true});
-      } else {
-        arcBuilder.addConfig({startDegrees: (55/60) * 360, lengthInDegrees: (20/60) * 360, color: 'green', rounded: true});
+        arcBuilder.addConfig({startDegrees: (40/60) * 360, lengthInDegrees: (20/60) * 360, color: 'green', rounded: false});
         additionalText.push(
           <text
-            x={350}
-            y={25}
+            x={-50}
+            y={150}
+            textAnchor={'middle'}
+            style={{'fontSize': '32px'}}
+            strokeWidth={'1px'}
+            fill={'white'}
+          >
+            Get Dressed
+          </text>
+        );
+      } else if (now.getMinutes() > wakeMinute && now.getMinutes() < wakeMinute + 15) {
+        arcBuilder.addConfig({startDegrees: (40/60) * 360, lengthInDegrees: (20/60) * 360, color: 'green', rounded: false});
+        additionalText.push(
+          <text
+            x={-50}
+            y={150}
+            textAnchor={'middle'}
+            style={{'fontSize': '32px'}}
+            strokeWidth={'1px'}
+            fill={'white'}
+          >
+            Get Dressed
+          </text>
+        );
+      } else {
+        arcBuilder.addConfig({startDegrees: (40/60) * 360, lengthInDegrees: (20/60) * 360, color: 'green', rounded: false});
+        additionalText.push(
+          <text
+            x={-50}
+            y={150}
             textAnchor={'middle'}
             style={{'fontSize': '32px'}}
             strokeWidth={'1px'}
@@ -74,7 +98,7 @@ function App() {
           </text>
         );
 
-        arcBuilder.addConfig({startDegrees: (10/60) * 360, lengthInDegrees: (20/60) * 360, color: 'red', rounded: true});
+        arcBuilder.addConfig({startDegrees: (0/60) * 360, lengthInDegrees: (30/60) * 360, color: 'red', rounded: false});
         additionalText.push(
           <text
             x={450}
@@ -84,16 +108,16 @@ function App() {
             strokeWidth={'1px'}
             fill={'white'}
           >
-            Breakfast
+            Breakfast/Shoes
           </text>
         );
       }
     } else if (now.getHours() === wakeHour + 1) {
-      arcBuilder.addConfig({startDegrees: (55/60) * 360, lengthInDegrees: (20/60) * 360, color: 'green', rounded: true});
+      arcBuilder.addConfig({startDegrees: (40/60) * 360, lengthInDegrees: (20/60) * 360, color: 'green', rounded: false});
       additionalText.push(
         <text
-          x={350}
-          y={25}
+          x={50}
+          y={80}
           textAnchor={'middle'}
           style={{'fontSize': '32px'}}
           strokeWidth={'1px'}
@@ -102,33 +126,33 @@ function App() {
           Get Dressed
         </text>
       );
-      arcBuilder.addConfig({startDegrees: (10/60) * 360, lengthInDegrees: (10/60) * 360, color: 'red', rounded: true});
-      additionalText.push(
-        <text
-          x={450}
-          y={200}
-          textAnchor={'middle'}
-          style={{'fontSize': '32px'}}
-          strokeWidth={'1px'}
-          fill={'white'}
-        >
-          Breakfast
-        </text>
-      );
-      arcBuilder.addConfig({startDegrees: (20/60) * 360, lengthInDegrees: (10/60) * 360, color: 'blue', rounded: true});
+      arcBuilder.addConfig({startDegrees: (0/60) * 360, lengthInDegrees: (30/60) * 360, color: 'red', rounded: false});
       additionalText.push(
         <text
           x={400}
-          y={375}
+          y={100}
           textAnchor={'middle'}
           style={{'fontSize': '32px'}}
           strokeWidth={'1px'}
           fill={'white'}
         >
-          Play Time
+          Breakfast/Shoes
         </text>
       );
-      arcBuilder.addConfig({startDegrees: (30/60) * 360, lengthInDegrees: (10/60) * 360, color: '#E600FF', rounded: true});
+      // arcBuilder.addConfig({startDegrees: (20/60) * 360, lengthInDegrees: (10/60) * 360, color: 'blue', rounded: true});
+      // additionalText.push(
+      //   <text
+      //     x={400}
+      //     y={375}
+      //     textAnchor={'middle'}
+      //     style={{'fontSize': '32px'}}
+      //     strokeWidth={'1px'}
+      //     fill={'white'}
+      //   >
+      //     Play Time
+      //   </text>
+      // );
+      arcBuilder.addConfig({startDegrees: (30/60) * 360, lengthInDegrees: (10/60) * 360, color: '#E600FF', rounded: false});
       additionalText.push(
         <text
           x={0}
@@ -138,10 +162,10 @@ function App() {
           strokeWidth={'1px'}
           fill={'white'}
         >
-          Shoes and jackets
+          Brush Teeth
         </text>
       );
-      arcBuilder.addConfig({startDegrees: (40/60) * 360, lengthInDegrees: (10/60) * 360, color: 'orange', rounded: true});
+      arcBuilder.addConfig({startDegrees: (40/60) * 360, lengthInDegrees: (10/60) * 360, color: 'orange', rounded: false});
       additionalText.push(
         <text
           x={-100}

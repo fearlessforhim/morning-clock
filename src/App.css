@@ -8,3 +8,51 @@
     background: black;
     padding: 50px 0;
 }
+
+.fa-tshirt {
+  position: absolute;
+    top: 24%;
+    left: 17%;
+    font-size: 56px;
+    color: white;
+}
+
+.fa-sun {
+  position: absolute;
+    top: 70%;
+    left: 17%;
+    font-size: 56px;
+    color: white;
+}
+
+.fa-shoe-prints {
+  position: absolute;
+    top: 35%;
+    left: 85%;
+    font-size: 56px;
+    color: white;
+}
+
+.fa-utensils {
+  position: absolute;
+    top: 35%;
+    left: 80%;
+    font-size: 56px;
+    color: white;
+}
+
+.fa-tooth {
+  position: absolute;
+    top: 77%;
+    left: 23%;
+    font-size: 56px;
+    color: white;
+}
+
+.fa-car {
+  position: absolute;
+    top: 37%;
+    left: 10%;
+    font-size: 56px;
+    color: white;
+}

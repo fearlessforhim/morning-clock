@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import ArcBuilder from './svg-arc-builder';
 import {useState, useEffect} from 'react';
+import { faHeart,faCommentDots,faShareSquare, faTshirt, faSun, faShoePrints, faUtensils, faTooth, faCar} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function App() {
   let [now, setNow] = useState(new Date());
@@ -11,19 +13,6 @@ function App() {
       setNow(new Date());
     }, 100);
   }, [now]);
-
-  let additionalText = [
-    <text
-      x={0}
-      y={50}
-      textAnchor={'middle'}
-      style={{'fontSize': '48px'}}
-      strokeWidth={'1px'}
-      fill={'white'}
-    >
-      {`${now.getHours()}:${now.getMinutes() < 10 ? `0${now.getMinutes()}` : now.getMinutes()}`}
-    </text>
-  ];
 
   let nowMillis = new Date().getTime();
   let secondHandDegrees = ((nowMillis % 60000)/60000) * 360;
@@ -38,13 +27,34 @@ function App() {
     let arcBuilder = new ArcBuilder();
     let wakeHour = 6;
     let wakeMinute = 30;
+    let icons = [];
+    let additionalText = [
+      <text
+      key={'time'}
+        x={0}
+        y={50}
+        textAnchor={'middle'}
+        style={{'fontSize': '48px'}}
+        strokeWidth={'1px'}
+        fill={'white'}
+      >
+        {`${now.getHours()}:${now.getMinutes() < 10 ? `0${now.getMinutes()}` : now.getMinutes()}`}
+      </text>
+    ];
 
     arcBuilder.addConfig({startDegrees: 0, lengthInDegrees: (59.99999/60) * 360, color: 'gray', rounded: false});
 
     if(now.getHours() === wakeHour){
       arcBuilder.addConfig({startDegrees: (30/60) * 360, lengthInDegrees: (10/60) * 360, color: 'yellow', rounded: false});
+      icons.push(
+        <FontAwesomeIcon
+        key={'sun'}
+        icon={faSun}
+        />
+      );
       additionalText.push(
         <text
+        key={`wake-up`}
           x={-50}
           y={350}
           textAnchor={'middle'}
@@ -57,8 +67,15 @@ function App() {
       );
       if(now.getMinutes() < wakeMinute){
         arcBuilder.addConfig({startDegrees: (40/60) * 360, lengthInDegrees: (20/60) * 360, color: 'green', rounded: false});
+        icons.push(
+          <FontAwesomeIcon
+          key={'t-shirt'}
+          icon={faTshirt}
+          />
+        );
         additionalText.push(
           <text
+          key={`get-dressed`}
             x={-50}
             y={150}
             textAnchor={'middle'}
@@ -69,10 +86,17 @@ function App() {
             Get Dressed
           </text>
         );
-      } else if (now.getMinutes() > wakeMinute && now.getMinutes() < wakeMinute + 15) {
+      } else if (now.getMinutes() >= wakeMinute && now.getMinutes() < wakeMinute + 15) {
         arcBuilder.addConfig({startDegrees: (40/60) * 360, lengthInDegrees: (20/60) * 360, color: 'green', rounded: false});
+        icons.push(
+          <FontAwesomeIcon
+          key={`t-shirt`}
+          icon={faTshirt}
+          />
+        );
         additionalText.push(
           <text
+          key={`get-dressed`}
             x={-50}
             y={150}
             textAnchor={'middle'}
@@ -85,8 +109,15 @@ function App() {
         );
       } else {
         arcBuilder.addConfig({startDegrees: (40/60) * 360, lengthInDegrees: (20/60) * 360, color: 'green', rounded: false});
+        icons.push(
+          <FontAwesomeIcon
+          key={`t-shirt`}
+          icon={faTshirt}
+           />
+        );
         additionalText.push(
           <text
+          key={'get-dressed'}
             x={-50}
             y={150}
             textAnchor={'middle'}
@@ -99,8 +130,19 @@ function App() {
         );
 
         arcBuilder.addConfig({startDegrees: (0/60) * 360, lengthInDegrees: (30/60) * 360, color: 'red', rounded: false});
+        icons.push(
+          <FontAwesomeIcon
+          key={`shoe-prints`}
+          icon={faShoePrints} />
+        );
+        icons.push(
+          <FontAwesomeIcon
+          key={`t-utensils`}
+          icon={faUtensils} />
+        );
         additionalText.push(
           <text
+          key={`breakfast-shoes`}
             x={450}
             y={200}
             textAnchor={'middle'}
@@ -113,24 +155,23 @@ function App() {
         );
       }
     } else if (now.getHours() === wakeHour + 1) {
-      arcBuilder.addConfig({startDegrees: (40/60) * 360, lengthInDegrees: (20/60) * 360, color: 'green', rounded: false});
-      additionalText.push(
-        <text
-          x={50}
-          y={80}
-          textAnchor={'middle'}
-          style={{'fontSize': '32px'}}
-          strokeWidth={'1px'}
-          fill={'white'}
-        >
-          Get Dressed
-        </text>
-      );
+      arcBuilder.addConfig({startDegrees: (40/60) * 360, lengthInDegrees: (20/60) * 360, color: 'gray', rounded: false});
       arcBuilder.addConfig({startDegrees: (0/60) * 360, lengthInDegrees: (30/60) * 360, color: 'red', rounded: false});
+      icons.push(
+        <FontAwesomeIcon
+        key={`t-shirt`}
+        icon={faShoePrints} />
+      );
+      icons.push(
+        <FontAwesomeIcon
+        key={`t-shirt`}
+        icon={faUtensils} />
+      );
       additionalText.push(
         <text
-          x={400}
-          y={100}
+        key={`breakfast-shoes`}
+          x={475}
+          y={190}
           textAnchor={'middle'}
           style={{'fontSize': '32px'}}
           strokeWidth={'1px'}
@@ -139,22 +180,15 @@ function App() {
           Breakfast/Shoes
         </text>
       );
-      // arcBuilder.addConfig({startDegrees: (20/60) * 360, lengthInDegrees: (10/60) * 360, color: 'blue', rounded: true});
-      // additionalText.push(
-      //   <text
-      //     x={400}
-      //     y={375}
-      //     textAnchor={'middle'}
-      //     style={{'fontSize': '32px'}}
-      //     strokeWidth={'1px'}
-      //     fill={'white'}
-      //   >
-      //     Play Time
-      //   </text>
-      // );
       arcBuilder.addConfig({startDegrees: (30/60) * 360, lengthInDegrees: (10/60) * 360, color: '#E600FF', rounded: false});
+      icons.push(
+        <FontAwesomeIcon
+        key={`tooth`}
+        icon={faTooth} />
+      );
       additionalText.push(
         <text
+        key={`brush-teeth`}
           x={0}
           y={375}
           textAnchor={'middle'}
@@ -166,8 +200,14 @@ function App() {
         </text>
       );
       arcBuilder.addConfig({startDegrees: (40/60) * 360, lengthInDegrees: (10/60) * 360, color: 'orange', rounded: false});
+      icons.push(
+        <FontAwesomeIcon
+        key={`car`}
+        icon={faCar} />
+      );
       additionalText.push(
         <text
+        key={`to-the-car`}
           x={-100}
           y={200}
           textAnchor={'middle'}
@@ -180,13 +220,21 @@ function App() {
       );
     }
 
-    return arcBuilder.getArcs();
+
+    return {
+      arcs: arcBuilder.getArcs(),
+      icons: icons,
+      text: additionalText
+    }
   }
+
+  let arcData = arcs();
 
   return (
     <div className="App">
+          {arcData.icons.map(i => i)}
           <svg style={{fill: 'none', 'strokeWidth': 40}} width="100%" height="100%" viewBox={'0 0 400 400'}>
-           {arcs().map((a, idx) => {
+           {arcData.arcs.map((a, idx) => {
              return <path
              key={idx}
              id={a.id}
@@ -198,7 +246,7 @@ function App() {
 
           <text
             x={200}
-            y={75}
+            y={80}
             textAnchor={'middle'}
             style={{'fontSize': '48px'}}
             strokeWidth={'1px'}
@@ -206,15 +254,55 @@ function App() {
           >
             12
           </text>
+          <text
+            x={265}
+            y={95}
+            textAnchor={'middle'}
+            style={{'fontSize': '48px'}}
+            strokeWidth={'1px'}
+            fill={'white'}
+          >
+            1
+          </text>
+          <text
+            x={315}
+            y={145}
+            textAnchor={'middle'}
+            style={{'fontSize': '48px'}}
+            strokeWidth={'1px'}
+            fill={'white'}
+          >
+            2
+          </text>
          <text
-           x={325}
-           y={200}
+           x={340}
+           y={215}
            textAnchor={'middle'}
            style={{'fontSize': '48px'}}
            strokeWidth={'1px'}
            fill={'white'}
          >
            3
+         </text>
+         <text
+           x={315}
+           y={275}
+           textAnchor={'middle'}
+           style={{'fontSize': '48px'}}
+           strokeWidth={'1px'}
+           fill={'white'}
+         >
+           4
+         </text>
+         <text
+           x={265}
+           y={325}
+           textAnchor={'middle'}
+           style={{'fontSize': '48px'}}
+           strokeWidth={'1px'}
+           fill={'white'}
+         >
+           5
          </text>
          <text
            x={200}
@@ -226,9 +314,29 @@ function App() {
          >
            6
          </text>
+         <text
+           x={135}
+           y={325}
+           textAnchor={'middle'}
+           style={{'fontSize': '48px'}}
+           strokeWidth={'1px'}
+           fill={'white'}
+         >
+           7
+         </text>
+         <text
+           x={85}
+           y={275}
+           textAnchor={'middle'}
+           style={{'fontSize': '48px'}}
+           strokeWidth={'1px'}
+           fill={'white'}
+         >
+           8
+         </text>
         <text
-          x={75}
-          y={200}
+          x={60}
+          y={215}
           textAnchor={'middle'}
           style={{'fontSize': '48px'}}
           strokeWidth={'1px'}
@@ -236,8 +344,27 @@ function App() {
         >
           9
         </text>
-        {additionalText.map(t => t)}
-
+        <text
+          x={85}
+          y={145}
+          textAnchor={'middle'}
+          style={{'fontSize': '48px'}}
+          strokeWidth={'1px'}
+          fill={'white'}
+        >
+          10
+        </text>
+        <text
+          x={135}
+          y={95}
+          textAnchor={'middle'}
+          style={{'fontSize': '48px'}}
+          strokeWidth={'1px'}
+          fill={'white'}
+        >
+          11
+        </text>
+        {arcData.text.map(t => t)}
         <line
          x1="200"
          y1="200"
@@ -261,7 +388,7 @@ function App() {
          y1="200"
           x2="200"
           y2="20"
-          style={{stroke: '#444', 'strokeWidth': 1.5}}
+          style={{stroke: '#FFF', 'strokeWidth': 1.5}}
           transform={`rotate(${secondHandDegrees} 200 200)`}
           strokeLinecap={'round'}
         />

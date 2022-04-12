@@ -20,7 +20,7 @@ function App() {
   let millisIntoDay = nowMillis % 86400000;
   let secondsIntoDay = millisIntoDay / 1000;
   let minutesIntoDay = secondsIntoDay / 60;
-  let hoursAfter12 = (minutesIntoDay / 60) - 8 - 12;//PST offset
+  let hoursAfter12 = (minutesIntoDay / 60) - 7 - 12;//PST offset
   let hourHandDegrees = (hoursAfter12 / 12) * 360;
 
   let arcs = () => {
@@ -388,7 +388,7 @@ function App() {
          y1="200"
           x2="200"
           y2="20"
-          style={{stroke: '#FFF', 'strokeWidth': 1.5}}
+          style={{stroke: '#B9B9B9', 'strokeWidth': 1.5}}
           transform={`rotate(${secondHandDegrees} 200 200)`}
           strokeLinecap={'round'}
         />

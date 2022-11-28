@@ -187,7 +187,7 @@ function App() {
       );
       icons.push(
         <FontAwesomeIcon
-        key={`t-shirt`}
+        key={`t-utensils`}
         icon={faUtensils} />
       );
       additionalText.push(

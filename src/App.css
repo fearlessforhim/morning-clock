@@ -56,3 +56,10 @@
   font-size: 56px;
   color: white;
 }
+
+.budgets {
+  color: white;
+  float: right;
+  text-align: right;
+  font-size: 12px;
+}

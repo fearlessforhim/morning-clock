@@ -8,6 +8,7 @@ import HourNumbers from './HourNumbers';
 
 function App() {
   let [now, setNow] = useState(new Date());
+  let [budgets, setBudgets] = useState([]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -17,23 +18,23 @@ function App() {
 
   let doFetch = async () => {
     let response = await fetch('static/media/budget.txt');    
-    // let response = await fetch('https://camfamphotos.ddns.net/s/2cWS2i89cwRyXka/download/PC%20Specs.txt'); 
     console.log(response);
     let text = await response.text();
-    console.log(text);
-    console.log(text.split('\n'));
-    // const reader = response.body.getReader();
 
-    // let charsReceived = 0;
-
-    // reader.read().then(({done, value})=> {
-      // if (done) {
-    //     return;
-    //   }
-
-    //   charsReceived += value.length;
-    //   const chunk = value;
-    // });
+    // let text = "Groceries:40/100\nGas:50/100";
+    
+    let budgetsArray = text.split('\n');
+    let budgets = budgetsArray.map(b => {
+      let name = b.split(":")[0];
+      let numbers = b.split(":")[1].split("/");
+      return {
+        name: name,
+        used: parseInt(numbers[0]),
+        total: parseInt(numbers[1])
+      }
+    });
+    console.log(budgets);
+    setBudgets(budgets);    
   }
 
   useEffect(() => {
@@ -299,6 +300,18 @@ function App() {
           strokeLinecap={'round'}
         />
           </svg>
+          <div
+          className={'budgets'}
+          >
+            {budgets.map(b => {
+              return <div
+              className={'budget'}
+              key={b.name}
+              >
+                {b.name} : {b.used}/{b.total}
+                </div>
+            })}
+          </div>
     </div>
   );
 }

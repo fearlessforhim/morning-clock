@@ -25,6 +25,7 @@ function App() {
     
     let budgetsArray = text.split('\n');
     let budgets = budgetsArray.map(b => {
+      if(!b) return;
       let name = b.split(":")[0];
       let numbers = b.split(":")[1].split("/");
       return {

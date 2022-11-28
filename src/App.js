@@ -14,6 +14,29 @@ function App() {
     }, 100);
   }, [now]);
 
+  let doFetch = async () => {
+    let response = await fetch('static/media/budget.txt');    
+    console.log(response);
+    let text = await response.text();
+    console.log(text);
+    // const reader = response.body.getReader();
+
+    // let charsReceived = 0;
+
+    // reader.read().then(({done, value})=> {
+      // if (done) {
+    //     return;
+    //   }
+
+    //   charsReceived += value.length;
+    //   const chunk = value;
+    // });
+  }
+
+  useEffect(() => {
+    doFetch();
+  }, []);
+
   let nowMillis = new Date().getTime();
   let secondHandDegrees = ((nowMillis % 60000)/60000) * 360;
   let minuteHandDegrees = ((nowMillis % 3600000)/3600000) * 360;
@@ -25,8 +48,8 @@ function App() {
 
   let arcs = () => {
     let arcBuilder = new ArcBuilder();
-    let wakeHour = 6;
-    let wakeMinute = 30;
+    let wakeHour = 13;
+    let wakeMinute = 0;
     let icons = [];
     let additionalText = [
       <text
@@ -150,7 +173,7 @@ function App() {
             strokeWidth={'1px'}
             fill={'white'}
           >
-            Breakfast/Shoes
+            Eat/Shoes
           </text>
         );
       }

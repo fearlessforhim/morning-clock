@@ -4,6 +4,7 @@ import ArcBuilder from './svg-arc-builder';
 import {useState, useEffect} from 'react';
 import { faHeart,faCommentDots,faShareSquare, faTshirt, faSun, faShoePrints, faUtensils, faTooth, faCar} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import HourNumbers from './HourNumbers';
 
 function App() {
   let [now, setNow] = useState(new Date());
@@ -16,9 +17,11 @@ function App() {
 
   let doFetch = async () => {
     let response = await fetch('static/media/budget.txt');    
+    // let response = await fetch('https://camfamphotos.ddns.net/s/2cWS2i89cwRyXka/download/PC%20Specs.txt'); 
     console.log(response);
     let text = await response.text();
     console.log(text);
+    console.log(text.split('\n'));
     // const reader = response.body.getReader();
 
     // let charsReceived = 0;
@@ -266,131 +269,11 @@ function App() {
              strokeLinecap={a.rounded ? 'round' : ''}
              />
            })}
-
-          <text
-            x={200}
-            y={80}
-            textAnchor={'middle'}
-            style={{'fontSize': '48px'}}
-            strokeWidth={'1px'}
-            fill={'white'}
-          >
-            12
-          </text>
-          <text
-            x={265}
-            y={95}
-            textAnchor={'middle'}
-            style={{'fontSize': '48px'}}
-            strokeWidth={'1px'}
-            fill={'white'}
-          >
-            1
-          </text>
-          <text
-            x={315}
-            y={145}
-            textAnchor={'middle'}
-            style={{'fontSize': '48px'}}
-            strokeWidth={'1px'}
-            fill={'white'}
-          >
-            2
-          </text>
-         <text
-           x={340}
-           y={215}
-           textAnchor={'middle'}
-           style={{'fontSize': '48px'}}
-           strokeWidth={'1px'}
-           fill={'white'}
-         >
-           3
-         </text>
-         <text
-           x={315}
-           y={275}
-           textAnchor={'middle'}
-           style={{'fontSize': '48px'}}
-           strokeWidth={'1px'}
-           fill={'white'}
-         >
-           4
-         </text>
-         <text
-           x={265}
-           y={325}
-           textAnchor={'middle'}
-           style={{'fontSize': '48px'}}
-           strokeWidth={'1px'}
-           fill={'white'}
-         >
-           5
-         </text>
-         <text
-           x={200}
-           y={350}
-           textAnchor={'middle'}
-           style={{'fontSize': '48px'}}
-           strokeWidth={'1px'}
-           fill={'white'}
-         >
-           6
-         </text>
-         <text
-           x={135}
-           y={325}
-           textAnchor={'middle'}
-           style={{'fontSize': '48px'}}
-           strokeWidth={'1px'}
-           fill={'white'}
-         >
-           7
-         </text>
-         <text
-           x={85}
-           y={275}
-           textAnchor={'middle'}
-           style={{'fontSize': '48px'}}
-           strokeWidth={'1px'}
-           fill={'white'}
-         >
-           8
-         </text>
-        <text
-          x={60}
-          y={215}
-          textAnchor={'middle'}
-          style={{'fontSize': '48px'}}
-          strokeWidth={'1px'}
-          fill={'white'}
-        >
-          9
-        </text>
-        <text
-          x={85}
-          y={145}
-          textAnchor={'middle'}
-          style={{'fontSize': '48px'}}
-          strokeWidth={'1px'}
-          fill={'white'}
-        >
-          10
-        </text>
-        <text
-          x={135}
-          y={95}
-          textAnchor={'middle'}
-          style={{'fontSize': '48px'}}
-          strokeWidth={'1px'}
-          fill={'white'}
-        >
-          11
-        </text>
-        {arcData.text.map(t => t)}
+          <HourNumbers/>
+          {arcData.text.map(t => t)}
         <line
-         x1="200"
-         y1="200"
+          x1="200"
+          y1="200"
           x2="200"
           y2="75"
           style={{stroke: '#AAA', 'strokeWidth': 20}}

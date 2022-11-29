@@ -6,10 +6,10 @@ export default function BudgetsApp() {
     let [budgets, setBudgets] = useState([]);
 
     let doFetch = async () => {
-        // let response = await fetch('static/media/budget.txt');    
-        // let text = await response.text();
+        let response = await fetch('static/media/budget.txt');    
+        let text = await response.text();
     
-        let text = "Groceries:70/100\nGas:105/100\n";
+        // let text = "Groceries:70/100\nGas:105/100\n";
         
         let budgetsArray = text.split('\n');
         let budgets = budgetsArray.map(b => {

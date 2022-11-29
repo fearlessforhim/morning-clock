@@ -1,7 +1,7 @@
 import './App.css';
 import { useState } from 'react';
-import ClockApp from './ClockApp';
-import BudgetsApp from './BudgetsApp';
+import ClockApp from './clock/ClockApp';
+import BudgetsApp from './budgets/BudgetsApp';
 import { Navigate, HashRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 export default function App() {

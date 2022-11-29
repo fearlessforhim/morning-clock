@@ -1,19 +1,25 @@
 .switcher-wrap {
-    border: 1px solid white;
-    background: #2075d6;
-    border-radius: 3px;
-    color: white;
     position: absolute;
-    top: 10px;
+    top: 30px;
     right: 10px;
     z-index: 1;
 }
 
-.switcher-wrap:hover {
+.switcher-wrap .link {
+    border: 1px solid white;
+    background: #2075d6;
+    border-radius: 3px;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.switcher-wrap .link:hover {
     background: #123f72;
 }
 
-.switcher-wrap > div {
-    padding: 10px;
-    cursor: pointer;
+.link + .link {
+    margin-left: 10px;
 }
+

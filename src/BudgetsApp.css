@@ -1,0 +1,36 @@
+.budget-app {
+    background: black;
+    padding: 50px;
+}
+
+.budget {
+    color: white;
+}
+
+.budget + .budget {
+    margin-top: 20px;
+}
+
+.budget-outer {
+    width: 100%;
+    background: gray;
+    height: 20px;
+}
+
+.budget-inner {
+    max-width: 100%;
+    background: rgb(0, 225, 0);
+    height: 20px;
+}
+
+.budget-inner.soft-warn {
+    background: yellow;
+}
+
+.budget-inner.warn {
+    background: orange;
+}
+
+.budget-inner.over {
+    background: red;
+}

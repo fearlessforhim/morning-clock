@@ -20,7 +20,7 @@ export default function ClockApp(props) {
   let millisIntoDay = nowMillis % 86400000;
   let secondsIntoDay = millisIntoDay / 1000;
   let minutesIntoDay = secondsIntoDay / 60;
-  let hoursAfter12 = (minutesIntoDay / 60) - 7 - 12;//PST offset
+  let hoursAfter12 = (minutesIntoDay / 60) - (new Date().getTimezoneOffset()/60) - 12;//PST offset
   let hourHandDegrees = (hoursAfter12 / 12) * 360;
 
   let arcs = () => {
